@@ -3,7 +3,8 @@ import { render } from "react-dom";
 
 export default function Topbar(){
   return (
-    <span className="top">           
+    <div> 
+        <span className="top">           
             <section id="top-bar" class="p-3">
             <div class="container">
                 <div class="row">
@@ -19,7 +20,8 @@ export default function Topbar(){
                 </div>
                 </div>
             </div>
-        </section>
+            </section>
         </span>
+    </div>
   );
 }

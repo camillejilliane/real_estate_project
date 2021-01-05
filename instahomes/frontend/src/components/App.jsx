@@ -3,11 +3,13 @@ import { render } from "react-dom";
 import HomePage from "./HomePage";
 import Topbar from "./Topbar";
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 export default function App(){
   return (
-    <div>
+    <div>      
       <Topbar />
+      <Navbar />
       <HomePage />
       <Footer />
     </div>
