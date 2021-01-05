@@ -32,6 +32,9 @@ module.exports = {
   optimization: {
     minimize: true,
   },
+  devServer: {
+    writeToDisk: true,
+},
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
