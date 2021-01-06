@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import About from "./About";
 import {
   BrowserRouter as Router,
@@ -7,19 +7,19 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
-export default function HomePage(){
-    function renderHomePage(){
-      return(
-        <p>This is the home page</p>
-      );
-    }
+export default function HomePage() {
+  function renderHomePage() {
     return (
-        <Router>
-          <Switch>
-            <Route exact path="/frontend/" render={renderHomePage}>
-            </Route>
-            <Route path="/frontend/about" component={About} />
-          </Switch>
-        </Router>
-      );
+      <p>This is the home page</p>
+    );
+  }
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/frontend/" render={renderHomePage}>
+        </Route>
+        <Route path="/frontend/about" component={About} />
+      </Switch>
+    </Router>
+  );
 }
