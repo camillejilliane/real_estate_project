@@ -25,7 +25,6 @@ export default function Navbar(){
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <ul class="navbar-nav">
                 <li
-                  className={}
                   /*{% if '/' == request.path %}
                   class="nav-item active mr-3"
                   {% else %}
