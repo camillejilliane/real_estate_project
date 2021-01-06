@@ -19,9 +19,8 @@ export default function HomePage(){
     return (
         <Router>
           <Switch>
-            <Route exact path="/frontend/" render={renderHomePage}>
-            </Route>
             <Route path="/frontend/about" component={About} />
+            <Route exact path="/frontend/" render={renderHomePage} />
           </Switch>
         </Router>
       );
