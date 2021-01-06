@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import About from "./About";
+import Navbar from './Navbar';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,7 +11,9 @@ import {
 export default function HomePage(){
     function renderHomePage(){
       return(
-        <p>This is the home page</p>
+        <div>
+        This is the home page
+        </div>
       );
     }
     return (
