@@ -1,14 +1,9 @@
-import React, {Component} from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    Redirect,
-  } from "react-router-dom";
-import logo from '../../static/img/logo.png'
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import logo from '../../static/img/logo.png';
 
-export default function Topbar(){
+export default function Navbar(){
+  
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
@@ -28,7 +23,7 @@ export default function Topbar(){
               //     class="nav-item mr-3"
               //   {% endif %}
               >
-                <a class="nav-link" href="{% url 'index' %}">Home</a>
+                <a class="nav-link" href="/frontend/">Home</a>
               </li>
               <li
                 // {% if 'about' in request.path %}
@@ -37,7 +32,7 @@ export default function Topbar(){
                 //   class="nav-item mr-3"
                 // {% endif %}
               >
-                <a class="nav-link" href="{% url 'about' %}">About</a>
+                <a class="nav-link" href="/frontend/about">About</a>
               </li>
               <li
                 // {% if 'listings' in request.path %}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 import {
     BrowserRouter as Router,
@@ -8,12 +8,13 @@ import {
     Redirect,
   } from "react-router-dom";
 import { Grid, Button, ButtonGroup, Typography } from "@material-ui/core";
-
 export default function About(){
+    const [realtor, setRealtor] = useState([]);
+    
     return(
         <div>
             <section id="showcase-inner" class="py-5 text-white">
-                <div className={"container"}>
+                <div className="container">
                 <div className="row text-center">
                     <div className="col-md-12">
                     <h1 className="display-4">About BT Real Estate</h1>
