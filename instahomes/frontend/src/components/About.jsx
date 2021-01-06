@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 import {
     BrowserRouter as Router,
@@ -28,6 +28,7 @@ export default function About() {
                             <h1 class="display-4">About BT Real Estate</h1>
                             <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
                         </div>
+
                     </div>
                 </div>
             </section>
