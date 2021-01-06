@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import logo from '../../static/img/logo.png'
 
-
 export default function Navbar(){
   return (
     <div>
