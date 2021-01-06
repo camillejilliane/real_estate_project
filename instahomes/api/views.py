@@ -5,50 +5,48 @@ from listings.models import Listing
 from realtors.models import Realtor
 from .serializers import ListingSerializer, RealtorSerializer
 from rest_framework.response import Response
-from django.http import JsonResponse
 
 
-class PublishedListingView(generics.ListAPIView):
-    queryset = Listing.objects.filter(is_published=True)
+class GetListingView(generics.ListAPIView):
     serializer_class = ListingSerializer
 
+    def get_queryset(self):
+        queryset = Listing.objects.all()
+        id = self.request.query_params.get('id', '')
+        is_published = self.request.query_params.get('is_published', '')
+        realtor_id = self.request.query_params.get('realtor_id', '')
 
-class ListingView(generics.ListAPIView):
-    queryset = Listing.objects.all()
-    serializer_class = ListingSerializer
+        if is_published != '':
+            if is_published == "True":
+                is_published = True
+            else:
+                is_published = False
+            queryset = queryset.filter(is_published=is_published)
+
+        if id != '':
+            queryset = queryset.filter(id=int(id))
+
+        if realtor_id != '':
+            queryset = queryset.filter(realtor_id=int(realtor_id))
+        return queryset
 
 
-class GetListingView(APIView):
-    lookup_url_kwarg = 'listing_id'
-
-    def get(self, request, format=None):
-        listing_id = request.GET.get(self.lookup_url_kwarg)
-        if listing_id != None:
-            listing = Listing.objects.filter(listing_id=listing_id)
-            if len(listing) > 0:
-                listing = listing[0]
-                data = ListingSerializer(listing).data
-                return Response(data, status=status.HTTP_200_OK)
-            return Response({'Room Not Found': 'Invalid Realtor.'}, status=status.HTTP_404_NOT_FOUND)
-
-        return Response({'Bad Request': 'Code paramater not found in request'}, status=status.HTTP_400_BAD_REQUEST)
-
-
-class RealtorView(generics.ListAPIView):
-    queryset = Realtor.objects.all()
+class GetRealtorView(generics.ListAPIView):
     serializer_class = RealtorSerializer
 
+    def get_queryset(self):
+        queryset = Realtor.objects.all()
+        id = self.request.query_params.get('id', '')
+        is_mvp = self.request.query_params.get('is_mvp', '')
 
-class RealtorListingsView(APIView):
-    lookup_url_kwarg = 'realtor_id'
+        if is_mvp != '':
+            if is_mvp == "True":
+                is_mvp = True
+            else:
+                is_mvp = False
+            queryset = queryset.filter(is_mvp=is_mvp)
 
-    def get(self, request, format=None):
-        realtor_id = request.GET.get(self.lookup_url_kwarg)
-        if realtor_id != None:
-            listings = Listing.objects.filter(realtor_id=realtor_id)
-            if len(listings) > 0:
-                data = ListingSerializer(listings, many=True).data
-                return Response(data, status=status.HTTP_200_OK)
-            return Response({'Room Not Found': 'Invalid Realtor.'}, status=status.HTTP_404_NOT_FOUND)
+        if id != '':
+            queryset = queryset.filter(id=int(id))
 
-        return Response({'Bad Request': 'Code paramater not found in request'}, status=status.HTTP_400_BAD_REQUEST)
+        return queryset
