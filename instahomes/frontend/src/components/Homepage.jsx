@@ -9,7 +9,6 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
-import Listings from "./Listings";
 
 export default function HomePage() {
   function renderHomePage() {
