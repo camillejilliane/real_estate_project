@@ -3,13 +3,13 @@ import { useLocation } from 'react-router-dom';
 import logo from '../../static/img/logo.png';
 
 export default function Navbar(){
-  
+
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <div class="container">
           <a class="navbar-brand" href="{% url 'index' %}">
-            <img src="{% static 'img/logo.png' %}" class="logo" alt=""/>
+            <img src="{logo}" class="logo" alt=""/>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
             <span class="navbar-toggler-icon"></span>
@@ -17,36 +17,24 @@ export default function Navbar(){
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav">
               <li
-                // {% if '/' == request.path %}
-              //     class="nav-item active mr-3"
-              //   {% else %}
-              //     class="nav-item mr-3"
-              //   {% endif %}
+                className={window.location.pathname ==='/frontend/'?'nav-item active mr-3':'nav-item mr-3'}
               >
                 <a class="nav-link" href="/frontend/">Home</a>
               </li>
               <li
-                // {% if 'about' in request.path %}
-                //   class="nav-item active mr-3"
-                // {% else %}
-                //   class="nav-item mr-3"
-                // {% endif %}
+                className={window.location.pathname ==='/frontend/about'?'nav-item active mr-3':'nav-item mr-3'}
               >
                 <a class="nav-link" href="/frontend/about">About</a>
               </li>
               <li
-                // {% if 'listings' in request.path %}
-                //   class="nav-item active mr-3"
-                // {% else %}
-                //   class="nav-item mr-3"
-                // {% endif %}
+                className={window.location.pathname ==='/frontend/listings'?'nav-item active mr-3':'nav-item mr-3'}
               >
                 <a class="nav-link" href="{% url 'listings' %}">Featured Listings</a>
               </li>
             </ul>
 
             <ul class="navbar-nav ml-auto">
-              {/* // {% if user.is_authenticated %}
+              {/* {% if user.is_authenticated %}
                 <li
                 {% if 'dashboard' in request.path %}
                   class="nav-item active mr-3"
@@ -70,21 +58,13 @@ export default function Navbar(){
                 </li>
               {% else %} */}
                 <li
-                // {% if 'register' in request.path %}
-                  class="nav-item active mr-3"
-                // {% else %}
-                //   class="nav-item mr-3"
-                // {% endif %}
+                  className={window.location.pathname ==='/frontend/register'?'nav-item active mr-3':'nav-item mr-3'}
                 >
                   <a class="nav-link" href="{% url 'register' %}">
                     <i class="fas fa-user-plus"></i> Register</a>
                 </li>
                 <li
-                // {% if 'login' in request.path %}
-                  class="nav-item active mr-3"
-                // {% else %}
-                //   class="nav-item mr-3"
-                // {% endif %}
+                className={window.location.pathname ==='/frontend/login'?'nav-item active mr-3':'nav-item mr-3'}
                 >
                   <a class="nav-link" href="{% url 'login' %}">
                     <i class="fas fa-sign-in-alt"></i>
