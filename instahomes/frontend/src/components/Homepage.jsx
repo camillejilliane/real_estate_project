@@ -1,6 +1,7 @@
 import React from "react";
 import About from "./About";
-import Navbar from './Navbar';
+import Login from './Login';
+import Register from './Register';
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,6 +21,8 @@ export default function HomePage(){
         <Router>
           <Switch>
             <Route path="/frontend/about" component={About} />
+            <Route path="/frontend/register" component={Register} />
+            <Route path="/frontend/login" component={Login} />
             <Route exact path="/frontend/" render={renderHomePage} />
           </Switch>
         </Router>

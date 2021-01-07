@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import logo from '../../static/img/logo.png';
 
 export default function Navbar(){
 
@@ -9,7 +8,7 @@ export default function Navbar(){
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <div class="container">
           <a class="navbar-brand" href="{% url 'index' %}">
-            <img src="{logo}" class="logo" alt=""/>
+            <img src="" class="logo" alt=""/>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
             <span class="navbar-toggler-icon"></span>
@@ -60,13 +59,13 @@ export default function Navbar(){
                 <li
                   className={window.location.pathname ==='/frontend/register'?'nav-item active mr-3':'nav-item mr-3'}
                 >
-                  <a class="nav-link" href="{% url 'register' %}">
+                  <a class="nav-link" href="/frontend/register">
                     <i class="fas fa-user-plus"></i> Register</a>
                 </li>
                 <li
                 className={window.location.pathname ==='/frontend/login'?'nav-item active mr-3':'nav-item mr-3'}
                 >
-                  <a class="nav-link" href="{% url 'login' %}">
+                  <a class="nav-link" href="/frontend/login">
                     <i class="fas fa-sign-in-alt"></i>
 
                     Login</a>
