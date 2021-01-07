@@ -6,61 +6,114 @@ import {
     Route,
     Link,
     Redirect,
-  } from "react-router-dom";
+} from "react-router-dom";
 import { Grid, Button, ButtonGroup, Typography } from "@material-ui/core";
-export default function About(){
-    const [realtor, setRealtor] = useState([]);
-    
-    return(
-        <div>
-            <section id="showcase-inner" class="py-5 text-white">
-                <div className="container">
-                <div className="row text-center">
-                    <div className="col-md-12">
-                    <h1 className="display-4">About BT Real Estate</h1>
-                    <p className="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+
+export default function About() {
+
+    const [realtor, setRealtor] = useState([])
+    const [mvp, setMVP] = useState([])
+
+    useEffect(() => {
+        fetch("/api/realtor").then(response =>
+            response.json().then(data => ({
+                data: data,
+                status: response.status
+            })
+            ).then(res => {
+                setRealtor(res.data.slice(0, 6))
+            }));
+
+        fetch("/api/realtor?is_mvp=True").then(response =>
+            response.json().then(data => ({
+                data: data,
+                status: response.status
+            })
+            ).then(res => {
+                setMVP(res.data)
+            }));
+    }, [])
+
+    function renderMVP(mvp) {
+        return (
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src={mvp.photo} alt="Seller of the month" />
+                    <div class="card-body">
+                        <h5 class="card-title">Seller Of The Month</h5>
+                        <h6 class="text-secondary">{mvp.name}</h6>
+                        <p class="card-text">{mvp.description}
+                        </p>
                     </div>
                 </div>
+            </div>
+        )
+    }
+
+    function renderRealtor(realtor) {
+        return (
+            <div class="col-md-4">
+                <img src={realtor.photo} alt="" class="rounded-circle mb-3" />
+                <h4>{realtor.name}</h4>
+                <p class="text-success">
+                    <i class="fas fa-award text-success mb-3"></i> Realtor</p>
+                <hr />
+                <p>
+                    <i class="fas fa-phone"></i>{realtor.phone}</p>
+                <p>
+                    <i class="fas fa-envelope-open"></i>{realtor.email}</p>
+            </div>
+        )
+    }
+
+    function renderRealtorList() {
+        return (
+            realtor.map(r => (
+                <div key={r.id}>{renderRealtor(r)}</div>)
+            ));
+    }
+
+    return (
+        <div>
+            <section id="showcase-inner" class="py-5 text-white">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-md-12">
+                            <h1 class="display-4">About BT Real Estate</h1>
+                            <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+                        </div>
+
+                    </div>
                 </div>
             </section>
-            
+
+            {/* (Breadcrumb) */}
             <section id="bc" class="mt-3">
-                <div className="container">
+                <div class="container">
                     <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item">
-                        <Link to="/frontend/">
-                            <i className="fas fa-home"></i> Home
-                        </Link>
-                        </li>
-                        <li className="breadcrumb-item active"> About</li>
-                    </ol>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'index' %}">
+                                    <i class="fas fa-home"></i> Home</a>
+                            </li>
+                            <li class="breadcrumb-item active"> About</li>
+                        </ol>
                     </nav>
                 </div>
             </section>
 
-            <section id="about" className="py-4">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-8">
-                        <h2>We Search For The Perfect Home</h2>
-                        <p className="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
-                        <img src={"../static/img/about.jpg"} alt=""/>
-                        <p className="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis esse officia repudiandae ad saepe ex, amet
+            <section id="about" class="py-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h2>We Search For The Perfect Home</h2>
+                            <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+                            <img src="../static/img/about.jpg" alt="" />
+                            <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis esse officia repudiandae ad saepe ex, amet
                             neque quod accusamus rem quia magnam magni dolorum facilis ullam minima perferendis? Exercitationem at quaerat
-                            commodi id libero eveniet harum perferendis laborum molestias quia.
-                        </p>
+            commodi id libero eveniet harum perferendis laborum molestias quia.</p>
                         </div>
-                        <div className="col-md-4">
-                            <div className="card">
-                                <img className="card-img-top" src={"../static/img/tommy.jpg"} alt="Seller of the month"/>
-                                <div className="card-body">
-                                <h5 className="card-title">Seller Of The Month</h5>
-                                <h6 className="text-secondary">Tommy</h6>
-                                <p className="card-text">Best Realtor</p>
-                                </div>
-                            </div>
-                        </div>
+                        {mvp.length > 0 ? renderMVP(mvp[0]) : null}
                     </div>
                 </div>
             </section>
@@ -68,34 +121,22 @@ export default function About(){
             <section id="work" class="bg-dark text-white text-center">
                 <h2 class="display-4">We Work For You</h2>
                 <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem velit aperiam, unde aliquid at similique!</h4>
-                <hr/>
-                <Link to="/frontend/about" class="btn btn-secondary text-white btn-lg">View Our Featured Listings</Link>
+                <hr />
+                {/* removed jinja tags */}
+                <a href="" class="btn btn-secondary text-white btn-lg">View Our Featured Listings</a>
             </section>
+
             <section id="team" class="py-5">
-            <div class="container">
-            <h2 class="text-center">Our Team</h2>
-            <div class="row text-center">
-                
-                <div class="col-md-4">
-                    <img src={"../static/img/tommy.jpg"} alt="" class="rounded-circle mb-3"/>
-                    <h4>Tommy</h4>
-                    <p class="text-success">
-                        <i class="fas fa-award text-success mb-3"></i> Realtor</p>
-                    <hr/>
-                    <p>
-                        <i class="fas fa-phone"></i>555-555-555</p>
-                    <p>
-                        <i class="fas fa-envelope-open"></i>alswang18@gmail.com</p>
+                <div class="container">
+                    <h2 class="text-center">Our Team</h2>
+                    <div class="row text-center">
+                        {realtor.length > 0 ? renderRealtorList() :
+                            <div class="col-md-12">
+                                <p>No Realtors Available</p>
+                            </div>
+                        }
                     </div>
-                
-                <div class="col-md-12">
-                    <p>No Realtors Available</p>
                 </div>
-      
-            </div>
-            </div>
-        </section>
-        </div>
-        
-        );
+            </section>
+        </div>)
 }

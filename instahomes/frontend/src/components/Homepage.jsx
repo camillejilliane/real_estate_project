@@ -9,15 +9,12 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
-export default function HomePage(){
-    function renderHomePage(){
-      return(
-        <div>
-        This is the home page
-        </div>
-      );
-    }
+import Listings from "./Listings";
+
+export default function HomePage() {
+  function renderHomePage() {
     return (
+
         <Router>
           <Switch>
             <Route path="/frontend/about" component={About} />
@@ -27,4 +24,5 @@ export default function HomePage(){
           </Switch>
         </Router>
       );
+
 }
