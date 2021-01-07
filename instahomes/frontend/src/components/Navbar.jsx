@@ -29,7 +29,7 @@ export default function Navbar(){
               <li
                 className={window.location.pathname ==='/frontend/listings'?'nav-item active mr-3':'nav-item mr-3'}
               >
-                <a class="nav-link" href="{% url 'listings' %}">Featured Listings</a>
+                <a class="nav-link" href="/frontend/listings">Featured Listings</a>
               </li>
             </ul>
 

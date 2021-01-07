@@ -8,20 +8,23 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
-export default function HomePage(){
-    function renderHomePage(){
-      return(
-        <div>
-        This is the home page
-        </div>
-      );
-    }
+import Listings from "./Listings";
+
+export default function HomePage() {
+  function renderHomePage() {
     return (
-        <Router>
-          <Switch>
-            <Route path="/frontend/about" component={About} />
-            <Route exact path="/frontend/" render={renderHomePage} />
-          </Switch>
-        </Router>
-      );
+      <div>
+        This is the home page
+      </div>
+    );
+  }
+  return (
+    <Router>
+      <Switch>
+        <Route path="/frontend/about" component={About} />
+        <Route path="/frontend/listings" component={Listings} />
+        <Route exact path="/frontend/" render={renderHomePage} />
+      </Switch>
+    </Router>
+  );
 }
