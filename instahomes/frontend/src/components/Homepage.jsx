@@ -12,6 +12,9 @@ import {
 
 export default function HomePage() {
   function renderHomePage() {
+
+    return (<div>Homepage</div>);
+  }
     return (
 
         <Router>
