@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 
-export default function Topbar(){
+export default function Footer(){
   return (
     <div>
     <span className="footer">
