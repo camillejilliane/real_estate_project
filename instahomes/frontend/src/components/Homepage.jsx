@@ -16,15 +16,16 @@ export default function HomePage() {
 
     return (<div>Homepage</div>);
   }
-    return (
+  return (
 
-        <Router>
-          <Switch>
-            <Route path="/frontend/about" component={About} />
-            <Route path="/frontend/register" component={Register} />
-            <Route path="/frontend/login" component={Login} />
-            <Route exact path="/frontend/" render={renderHomePage} />
-          </Switch>
-        </Router>
-      );
-    }
+    <Router>
+      <Switch>
+        <Route path="/frontend/about" component={About} />
+        <Route path="/frontend/register" component={Register} />
+        <Route path="/frontend/login" component={Login} />
+        <Route path="/frontend/listings" component={Listings} />
+        <Route exact path="/frontend/" render={renderHomePage} />
+      </Switch>
+    </Router>
+  );
+}
