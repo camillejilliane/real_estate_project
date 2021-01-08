@@ -1,5 +1,24 @@
-import React from "react";
-export default function Login(){
+import React, {useState} from "react";
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { login } from '../actions/auth';
+import axios from 'axios';
+
+function Login({ login }){
+    const [formData, setFormData] = useState({
+        email:'',
+        password:''
+    });
+
+    const { email, password } = formData
+
+    const onChange = e => setFormData(
+            { ...formData, [e.target.name]: e.target.value}
+        )
+    const onSubmit = e => {
+        e.preventDefault();
+        login(email, password);
+    }
     return(
         <section id="login" class="bg-light py-5">
             <div class="container">
@@ -13,16 +32,16 @@ export default function Login(){
                             <div class="card-body">
                             {/* <!-- Alerts -->
                             {% include 'partials/_alerts.html' %} */}
-                                <form action="{% url 'login' %}" method="POST">
+                                <form onSubmit={e => onSubmit(e)}>
                                 {/* {% csrf_token %} */}
                                 <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" name="username" class="form-control" required/>
+                                <label for="username">Email</label>
+                                <input type="email" name="email" class="form-control" onChange={onChange} required/>
                                 </div>
 
                                 <div class="form-group">
                                 <label for="password2">Password</label>
-                                <input type="password" name="password" class="form-control" required/>
+                                <input type="password" name="password" class="form-control"  onChange={onChange} required/>
                                 </div>
 
                                 <input type="submit" value="Login" class="btn btn-secondary btn-block"/>
@@ -35,3 +54,5 @@ export default function Login(){
         </section>
     )
 }
+
+export default connect(null, { login })(Login);
