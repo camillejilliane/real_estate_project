@@ -10,15 +10,14 @@ import {
   Redirect,
 } from "react-router-dom";
 import Listings from "./Listings";
-import { Provider } from 'react-redux';
-import store from '../store';
 export default function HomePage() {
   function renderHomePage() {
 
     return (<div>Homepage</div>);
   }
   return (
-    <Provider store={store}>
+    
+    
       <Router>
         <Switch>
           <Route path="/frontend/about" component={About} />
@@ -28,6 +27,5 @@ export default function HomePage() {
           <Route exact path="/frontend/" render={renderHomePage} />
         </Switch>
       </Router>
-    </Provider>
   );
 }

@@ -17,6 +17,7 @@ function Login({ login }){
         )
     const onSubmit = e => {
         e.preventDefault();
+        console.log(email, password)
         login(email, password);
     }
     return(
@@ -54,5 +55,7 @@ function Login({ login }){
         </section>
     )
 }
-
+const mapStateToProps = state =>({
+    isAuthenticated: state.auth.isAuthenticated
+})
 export default connect(null, { login })(Login);
