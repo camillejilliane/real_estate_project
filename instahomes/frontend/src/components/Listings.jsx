@@ -11,8 +11,6 @@ import { Grid, Button, ButtonGroup, Typography } from "@material-ui/core";
 
 export default function Listings() {
 
-<<<<<<< HEAD
-=======
   const [listings, setListings] = useState([])
 
   useEffect(() => {
@@ -149,5 +147,4 @@ export default function Listings() {
 
     </div>
   );
->>>>>>> 3b22d1950288317ba02842ca5dd95b188cf76aed
 }
