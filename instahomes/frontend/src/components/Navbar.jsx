@@ -1,8 +1,49 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { StaticRouter, useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from '../actions/auth';
 
-export default function Navbar(){
-
+function Navbar({ logout, isAuthenticated }){
+  const logout_user = () => {
+    console.log("logout")
+    logout();
+};
+  const guestLinks = () =>{
+    return(
+    <Fragment>
+      <li className={window.location.pathname ==='/frontend/register'?'nav-item active mr-3':'nav-item mr-3'}>
+        <a class="nav-link" href="/frontend/register">
+          <i class="fas fa-user-plus">
+            </i> Register
+        </a>
+      </li>
+      <li className={window.location.pathname ==='/frontend/login'?'nav-item active mr-3':'nav-item mr-3'}>
+        <a class="nav-link" href="/frontend/login">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </a>
+      </li>
+    </Fragment>
+    );
+  };
+  const authLinks = () =>{
+    return(
+    <Fragment>
+      <li className={window.location.pathname ==='/frontend/register'?'nav-item active mr-3':'nav-item mr-3'}>
+        <a class="nav-link" href="#!" >
+          Welcome to Dashboard
+        </a>
+      </li>
+      <li className={window.location.pathname ==='/frontend/login'?'nav-item active mr-3':'nav-item mr-3'}>
+        <a class="nav-link" href="#!" onClick={logout_user}>
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+      </li>
+    </Fragment>
+    );
+  };
+  const logoutHandler = () =>{
+    logout();
+  };
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
@@ -56,20 +97,8 @@ export default function Navbar(){
                   </form>
                 </li>
               {% else %} */}
-                <li
-                  className={window.location.pathname ==='/frontend/register'?'nav-item active mr-3':'nav-item mr-3'}
-                >
-                  <a class="nav-link" href="/frontend/register">
-                    <i class="fas fa-user-plus"></i> Register</a>
-                </li>
-                <li
-                className={window.location.pathname ==='/frontend/login'?'nav-item active mr-3':'nav-item mr-3'}
-                >
-                  <a class="nav-link" href="/frontend/login">
-                    <i class="fas fa-sign-in-alt"></i>
-
-                    Login</a>
-                </li>
+                {isAuthenticated?authLinks():guestLinks()}
+                {console.log(isAuthenticated)}
               {/* {% endif %} */}
             </ul>
           </div>
@@ -77,4 +106,9 @@ export default function Navbar(){
       </nav>
     </div>
     );
-  }
+}
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { logout })(Navbar)
