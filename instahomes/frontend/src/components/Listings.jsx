@@ -28,7 +28,7 @@ export default function Listings() {
   };
 
   useEffect(() => {
-    fetch("https://randomapi.com/api/6de6abfedb24f889e0b5f675edc50deb?fmt=raw&sole").then(response =>
+    fetch("/api/listing").then(response =>
       response.json().then(data => ({
         data: data,
         status: response.status
@@ -50,7 +50,7 @@ export default function Listings() {
           </div>
           <div class="card-body">
             <div class="listing-heading text-center">
-              <h4 class="text-primary">{listing.address}</h4>
+              <h4 class="text-primary">{listing.title}</h4>
               <p>
                 <i class="fas fa-map-marker text-secondary"></i> {listing.city} {listing.state}, {listing.zipcode}</p>
             </div>
@@ -157,8 +157,7 @@ export default function Listings() {
             }
           </div>
           <div>
-            <Pagination postsPerPage={listingsPerPage} totalPosts={listings.length} paginate={paginate} currentPage={currentPage} />
-            {console.log(currentPage)}
+            {listings.length > listingsPerPage ? <Pagination postsPerPage={listingsPerPage} totalPosts={listings.length} paginate={paginate} /> : ''}
           </div>
         </div>
       </section>
