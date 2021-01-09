@@ -5,6 +5,8 @@ import {
     USER_LOADED_FAIL,
     AUTHENTICATED_SUCCESS,
     AUTHENTICATED_FAIL,
+    SIGNUP_SUCCESS,
+    SIGNUP_FAIL,
     LOGOUT
 } from './types';
 import axios from 'axios';
@@ -88,6 +90,30 @@ export const load_user = () => async dispatch => {
         });
     }
     
+};
+
+export const signup = (first_name, last_name, email, password, re_password) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const body = JSON.stringify({ first_name, last_name, email, password, re_password });
+    console.log(body)
+    try {
+        const res = await axios.post(`http://localhost:8000/auth/users/`, body, config);
+        dispatch({
+            type: SIGNUP_SUCCESS,
+            payload: res.data
+        });
+        dispatch(login(email, password));
+    } catch (err) {
+        console.log(err)
+        dispatch({
+            type: SIGNUP_FAIL
+        })
+    }
 };
 
 export const logout = () => dispatch => {

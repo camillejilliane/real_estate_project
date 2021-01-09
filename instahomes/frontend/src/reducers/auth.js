@@ -5,6 +5,8 @@ import {
     USER_LOADED_FAIL,
     AUTHENTICATED_SUCCESS,
     AUTHENTICATED_FAIL,
+    SIGNUP_SUCCESS,
+    SIGNUP_FAIL,
     LOGOUT
 } from '../actions/types';
 
@@ -36,16 +38,7 @@ export default function(state = initialState, action){
                 ...state,
                 user: null
             }
-        case LOGIN_FAIL:
-            localStorage.removeItem('access');
-            localStorage.removeItem('refresh');
-            return {
-                ...state,
-                access: null,
-                refresh: null,
-                isAuthenticated: false,
-                user: null
-            }
+        
         case AUTHENTICATED_SUCCESS:
             return {
                 ...state,
@@ -56,6 +49,13 @@ export default function(state = initialState, action){
                 ...state,
                 isAuthenticated: false
             }
+        case SIGNUP_SUCCESS:
+            return {
+                ...state,
+                isAuthenticated: false
+            }
+        case LOGIN_FAIL:
+        case SIGNUP_FAIL:
         case LOGOUT:
             localStorage.removeItem('access');
             localStorage.removeItem('refresh');

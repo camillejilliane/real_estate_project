@@ -4,10 +4,6 @@ import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
 
 function Navbar({ logout, isAuthenticated }){
-  const logout_user = () => {
-    console.log("logout")
-    logout();
-};
   const guestLinks = () =>{
     return(
     <Fragment>
@@ -34,7 +30,7 @@ function Navbar({ logout, isAuthenticated }){
         </a>
       </li>
       <li className={window.location.pathname ==='/frontend/login'?'nav-item active mr-3':'nav-item mr-3'}>
-        <a class="nav-link" href="#!" onClick={logout_user}>
+        <a class="nav-link" href="#!" onClick={logoutHandler}>
           <i class="fas fa-sign-out-alt"></i> Logout
         </a>
       </li>
@@ -74,32 +70,7 @@ function Navbar({ logout, isAuthenticated }){
             </ul>
 
             <ul class="navbar-nav ml-auto">
-              {/* {% if user.is_authenticated %}
-                <li
-                {% if 'dashboard' in request.path %}
-                  class="nav-item active mr-3"
-                {% else %}
-                  class="nav-item mr-3"
-                {% endif %}
-                >
-                  <a class="nav-link" href="{% url 'dashboard' %}">
-                  Welcome 
-                  {{ user.username }} placeholder
-                  (Dashboard)</a>
-                </li>
-                <li class="nav-item mr-3">
-                  <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                  </a>
-                  <form action="{% url 'logout' %}" method="POST" id="logout">
-                    {% csrf_token %}
-                    <input type="hidden">
-                  </form>
-                </li>
-              {% else %} */}
-                {isAuthenticated?authLinks():guestLinks()}
-                {console.log(isAuthenticated)}
-              {/* {% endif %} */}
+              {isAuthenticated?authLinks():guestLinks()}
             </ul>
           </div>
         </div>

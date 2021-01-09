@@ -95,8 +95,6 @@ WSGI_APPLICATION = 'instahomes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-os.environ['DB_USER'] = 'postgres'
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

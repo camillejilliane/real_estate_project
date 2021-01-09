@@ -17,7 +17,6 @@ function Login({ login }){
         )
     const onSubmit = e => {
         e.preventDefault();
-        console.log(email, password)
         login(email, password);
     }
     return(
@@ -31,10 +30,7 @@ function Login({ login }){
                                 <i class="fas fa-sign-in-alt"></i> Login</h4>
                             </div>
                             <div class="card-body">
-                            {/* <!-- Alerts -->
-                            {% include 'partials/_alerts.html' %} */}
                                 <form onSubmit={e => onSubmit(e)}>
-                                {/* {% csrf_token %} */}
                                 <div class="form-group">
                                 <label for="username">Email</label>
                                 <input type="email" name="email" class="form-control" onChange={onChange} required/>
