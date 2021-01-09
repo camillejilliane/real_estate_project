@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Pagination from "./Pagination";
 import { render } from "react-dom";
 import {
   BrowserRouter as Router,
@@ -12,6 +13,19 @@ import { Grid, Button, ButtonGroup, Typography } from "@material-ui/core";
 export default function Listings() {
 
   const [listings, setListings] = useState([])
+  const [currentPage, setCurrentPage] = useState(1);
+  const [listingsPerPage] = useState(10);
+
+
+  // Get current listings
+  const indexOfLastListings = currentPage * listingsPerPage;
+  const indexOfFirstListings = indexOfLastListings - listingsPerPage;
+  const currentListings = listings.slice(indexOfFirstListings, indexOfLastListings);
+
+  // Change page
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  };
 
   useEffect(() => {
     fetch("/api/listing").then(response =>
@@ -22,7 +36,7 @@ export default function Listings() {
       ).then(res => {
         setListings(res.data)
       }));
-  }, [])
+  }, []);
 
   function renderListings(listing) {
     return (
@@ -72,7 +86,7 @@ export default function Listings() {
 
   function renderListingsList() {
     return (
-      listings.map(l => (
+      currentListings.map(l => (
         <div key={l.id}>{renderListings(l)}</div>)
       ));
   }
@@ -142,9 +156,11 @@ export default function Listings() {
               </div>
             }
           </div>
+          <div>
+            {listings.length > listingsPerPage ? <Pagination postsPerPage={listingsPerPage} totalPosts={listings.length} paginate={paginate} /> : ''}
+          </div>
         </div>
       </section>
-
     </div>
   );
 }
