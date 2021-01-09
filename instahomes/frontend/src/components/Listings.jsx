@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Pagination from "./Pagination";
 import { render } from "react-dom";
 import {
   BrowserRouter as Router,
@@ -12,9 +13,22 @@ import { Grid, Button, ButtonGroup, Typography } from "@material-ui/core";
 export default function Listings() {
 
   const [listings, setListings] = useState([])
+  const [currentPage, setCurrentPage] = useState(1);
+  const [listingsPerPage] = useState(10);
+
+
+  // Get current listings
+  const indexOfLastListings = currentPage * listingsPerPage;
+  const indexOfFirstListings = indexOfLastListings - listingsPerPage;
+  const currentListings = listings.slice(indexOfFirstListings, indexOfLastListings);
+
+  // Change page
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  };
 
   useEffect(() => {
-    fetch("/api/listing").then(response =>
+    fetch("https://randomapi.com/api/6de6abfedb24f889e0b5f675edc50deb?fmt=raw&sole").then(response =>
       response.json().then(data => ({
         data: data,
         status: response.status
@@ -22,7 +36,7 @@ export default function Listings() {
       ).then(res => {
         setListings(res.data)
       }));
-  }, [])
+  }, []);
 
   function renderListings(listing) {
     return (
@@ -36,7 +50,7 @@ export default function Listings() {
           </div>
           <div class="card-body">
             <div class="listing-heading text-center">
-              <h4 class="text-primary">{listing.title}</h4>
+              <h4 class="text-primary">{listing.address}</h4>
               <p>
                 <i class="fas fa-map-marker text-secondary"></i> {listing.city} {listing.state}, {listing.zipcode}</p>
             </div>
@@ -72,7 +86,7 @@ export default function Listings() {
 
   function renderListingsList() {
     return (
-      listings.map(l => (
+      currentListings.map(l => (
         <div key={l.id}>{renderListings(l)}</div>)
       ));
   }
@@ -142,9 +156,12 @@ export default function Listings() {
               </div>
             }
           </div>
+          <div>
+            <Pagination postsPerPage={listingsPerPage} totalPosts={listings.length} paginate={paginate} currentPage={currentPage} />
+            {console.log(currentPage)}
+          </div>
         </div>
       </section>
-
     </div>
   );
 }
