@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap');
+
+:root {
+  --nav-color: #476891;
+  --main-padding-x: 6.5rem;
+}
+
+body {
+  font-size: 16px;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+  padding-left: var(--main-padding-x);
+  padding-right: var(--main-padding-x);
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.navbar-toggler {
+  color:#879EEB;
+}
+
+.nav-item {
+  color: var(--nav-color);
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: bold;
+  font-size: 0.875em;
+  padding-left: 4rem !important;
+}
+
+.nav-item:hover {
+  color: var(--nav-color);
+}
+
+@media (max-width: 1000px) {
+  .nav-item {
+    padding-left: 0 !important;
+  }
+}
+
+/* ================= HERO SECTION ================= */
+
+.hero-bg {
+  background-color: #1C222A;
+}
+
+.hero-section {
+  padding: 5rem var(--main-padding-x);
+}
