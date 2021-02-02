@@ -6,13 +6,17 @@
   --white-header: #F7F7F7;
   --white-body: #BACCE2;
   --white-button: #879EBB;
+  --dark-header: #3F526A;
+  --dark-body: #476891;
   --main-padding-x: 6.5rem;
+  --main-bg: #F6F6F6;
 }
 
 /* ================= GLOBAL STYLES ================= */
 
 body {
   font-size: 16px;
+  background-color: var(--main-bg);
 }
 
 h1 {
@@ -72,7 +76,7 @@ p {
 }
 
 .hero-section {
-  padding: 2rem var(--main-padding-x);
+  padding: 3rem var(--main-padding-x) 6rem var(--main-padding-x);
 }
 
 .header-white {
@@ -87,4 +91,30 @@ p {
   border-color: var(--white-button);
   color: var(--white-body);
   font-size: 0.9375em;
+}
+
+/* ================= SUB SECTION ================= */
+.sub-section {
+  font-size: 1.125rem;
+  padding: 10rem var(--main-padding-x);
+}
+
+.sub-text {
+  width: 90%;
+}
+
+.listings-img {
+  width: 60%;
+  height: 320px;
+  background-image: url("../assets/listings.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.header-dark {
+  color: var(--dark-header);
+}
+
+.body-dark {
+  color: var(--dark-body);
 }
