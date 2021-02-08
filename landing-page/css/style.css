@@ -139,13 +139,14 @@ li {
 }
 
 /* ================= SUB SECTION ================= */
-.sub-section {
-  padding: var(--main-padding-y) var(--main-padding-x);
-}
 
 @media (min-width: 993px) {
+  .sub-section {
+    padding: var(--main-padding-y) var(--main-padding-x);
+  }
+
   .sub-text {
-    width: 90%;
+    width: 70%;
   }
 }
 
@@ -165,14 +166,26 @@ li {
   color: var(--dark-body);
 }
 
-@media (max-width: 768px) {
+@media (max-width: calc(993px - 1px)) {
+  .sub-text {
+    max-width: 540px;
+    padding: var(--main-padding-y) 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .listings-img {
     width: 100%;
     background-position: right;
-    background-size: cover;
-    height: 120px;
+    background-size: 134%;
+    height: 47vw;
     background-repeat: no-repeat;
-    margin-bottom: 1.5em;
+  }
+}
+
+@media (max-width: calc(576px - 1px)) {
+  .sub-text {
+    padding: var(--main-padding-y) var(--main-padding-x);
   }
 }
 
@@ -219,7 +232,7 @@ li {
   font-weight: 300;
 }
 
-@media (max-width: calc(768px - 1px)) {
+@media (max-width: calc(993px - 1px)) {
   .signup-text {
     max-width: 540px;
     padding: var(--main-padding-y) 15px;
