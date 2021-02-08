@@ -281,11 +281,11 @@ li {
 
 .listing-input, .listing-form textarea {
   background-color: var(--listing-input-bg);
-  color: var(--listing-input-color);
+  color: var(--dark-header);
   border: 1px solid var(--listing-input-border);
   font-family: 'Rubik', sans-serif;
   border-radius: 4px;
-  padding: 1.5em;
+  padding: 1em;
 
   margin-bottom: 1em;
 }
@@ -299,6 +299,10 @@ li {
 
 .listing-form > ::placeholder {
   color: var(--listing-input-color);
+}
+
+.alert {
+  font-family: 'Rubik', sans-serif;
 }
 
 .btn-listing {

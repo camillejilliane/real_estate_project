@@ -8,7 +8,8 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="css/all.css">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Custom -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Lightbox -->
@@ -103,13 +104,25 @@
                     <li class="body-dark"><i class="fa-li fa fa-check"></i>We’ll add your listings completely <b>free of cost</b>.</li>
                 </ul>
             </div>
-            <form>
+            <form id="create-listing-form">
                 <div class="listing-form mt-lg-0 mt-4">
-                    <input type="text" class="form-control listing-input px-3" placeholder="Full name or Company name" />
-                    <input type="email" class="form-control listing-input px-3" placeholder="Email address" />
-                    <input type="text" class="form-control listing-input px-3" placeholder="Cellphone number" />
+                    <div class="alert alert-success fade show" id="alert-listing-success" style="display: none" role="alert">
+                        Successfully submitted!
+                        <button type="button" class="close" onclick="$('.alert').hide()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="alert alert-danger fade show" id="alert-listing-failure" style="display: none" role="alert">
+                        Failed to submit!
+                        <button type="button" class="close" onclick="$('.alert').hide()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <input type="text" name="name" class="form-control listing-input px-3" placeholder="Full name or Company name" />
+                    <input type="email" name="email" class="form-control listing-input px-3" placeholder="Email address" />
+                    <input type="text" name="phone" class="form-control listing-input px-3" placeholder="Cellphone number" />
                     <textarea name="details" id="details" placeholder="Any details about your properties (locations, types of property, prices, etc.)"></textarea>
-                    <button class="btn btn-listing" type="submit">GET ME LISTED</button>
+                    <button class="btn btn-listing" type="button" onclick="SubForm()">GET ME LISTED</button>
                 </div>
             </form>
         </div>
@@ -160,11 +173,15 @@
         <p class="footer-text footer-copyright mt-4">© 2021 Instahomes Philipppines</p>
     </footer>
 
-
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/lightbox.min.js"></script>
-    <script src="js/main.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+    <script src="js/listing-form.js"></script>
 </body>
 
 </html>
