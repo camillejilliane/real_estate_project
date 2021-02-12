@@ -134,7 +134,7 @@ li {
 
 .btn-outline-hero {
   border-color: var(--white-button);
-  color: var(--white-body);
+  color: var(--white-body) !important;
   font-size: 0.9375em;
 }
 
