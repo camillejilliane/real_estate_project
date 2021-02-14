@@ -134,18 +134,19 @@ li {
 
 .btn-outline-hero {
   border-color: var(--white-button);
-  color: var(--white-body);
+  color: var(--white-body) !important;
   font-size: 0.9375em;
 }
 
 /* ================= SUB SECTION ================= */
-.sub-section {
-  padding: var(--main-padding-y) var(--main-padding-x);
-}
 
 @media (min-width: 993px) {
+  .sub-section {
+    padding: var(--main-padding-y) var(--main-padding-x);
+  }
+
   .sub-text {
-    width: 90%;
+    width: 70%;
   }
 }
 
@@ -165,14 +166,26 @@ li {
   color: var(--dark-body);
 }
 
-@media (max-width: 768px) {
+@media (max-width: calc(993px - 1px)) {
+  .sub-text {
+    max-width: 540px;
+    padding: var(--main-padding-y) 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .listings-img {
     width: 100%;
     background-position: right;
-    background-size: cover;
-    height: 120px;
+    background-size: 134%;
+    height: 47vw;
     background-repeat: no-repeat;
-    margin-bottom: 1.5em;
+  }
+}
+
+@media (max-width: calc(576px - 1px)) {
+  .sub-text {
+    padding: var(--main-padding-y) var(--main-padding-x);
   }
 }
 
@@ -219,7 +232,7 @@ li {
   font-weight: 300;
 }
 
-@media (max-width: calc(768px - 1px)) {
+@media (max-width: calc(993px - 1px)) {
   .signup-text {
     max-width: 540px;
     padding: var(--main-padding-y) 15px;
@@ -255,6 +268,13 @@ li {
   padding: var(--main-padding-y) var(--main-padding-x);
 }
 
+@media (max-width: 538px) {
+  .container-no-padding {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .listing-text {
   flex: 1;
 }
@@ -268,11 +288,12 @@ li {
 
 .listing-input, .listing-form textarea {
   background-color: var(--listing-input-bg);
-  color: var(--listing-input-color);
+  color: var(--dark-header);
   border: 1px solid var(--listing-input-border);
   font-family: 'Rubik', sans-serif;
+  font-size: 1em;
   border-radius: 4px;
-  padding: 1.5em;
+  padding: 1em;
 
   margin-bottom: 1em;
 }
@@ -281,11 +302,15 @@ li {
   width: 100%;
   resize: none;
   padding: 1em;
-  font-size: 1rem;
+  font-size: 1em;
 }
 
 .listing-form > ::placeholder {
   color: var(--listing-input-color);
+}
+
+.alert {
+  font-family: 'Rubik', sans-serif;
 }
 
 .btn-listing {
@@ -318,7 +343,7 @@ li {
   padding-left: 0;
 }
 
-@media (max-width: 880px) {
+@media (min-width: 0px) {
   .footer-list {
     justify-content: center !important;
   }
@@ -336,7 +361,7 @@ li {
   }
 
   .footer-copyright {
-    font-size: 0.8rem;
+    font-size: 1rem;
     text-align: center;
   }
 }
