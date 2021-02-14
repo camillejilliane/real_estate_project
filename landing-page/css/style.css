@@ -343,7 +343,7 @@ li {
   padding-left: 0;
 }
 
-@media (max-width: 880px) {
+@media (min-width: 0px) {
   .footer-list {
     justify-content: center !important;
   }
@@ -361,7 +361,7 @@ li {
   }
 
   .footer-copyright {
-    font-size: 0.8rem;
+    font-size: 1rem;
     text-align: center;
   }
 }
